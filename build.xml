@@ -1,0 +1,42 @@
+<?xml version='1.0'?>
+<project>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/ArrayListDemo.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="oata.ArrayListDemo"/>
+            </manifest>
+        </jar>
+
+	<jar destfile="build/jar/HelloWorld.jar" basedir="build/classes">
+            <manifest>
+				<attribute name="Main-Class" value="oata.HelloWorld"/>
+            </manifest>
+        </jar>
+		
+	<jar destfile="final/temp_final.jar" filesetmanifest="skip"> 
+        <zipgroupfileset dir="build/jar" includes="*.jar"/> 
+        <zipgroupfileset dir="build/lib" includes="*.jar"/> 
+        <manifest> 
+            <attribute name="Main-Class" value="main-class"/>
+        </manifest> 
+    </jar> 
+    </target>
+	
+
+    <target name="run">
+        <java jar="build/jar/ArrayListDemo.jar" fork="true"/>
+        <java jar="build/jar/HelloWorld.jar" fork="true"/>
+    </target>
+
+</project>
